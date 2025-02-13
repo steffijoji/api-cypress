@@ -10,7 +10,40 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add('buscarDeviceEspecifico', (deviceId) => {
+    cy.request({
+        method: 'GET',
+        url: `/objects/${deviceId}`,
+        failOnStatusCode: false
+    }).then((response) => { return response})
+})
+
+Cypress.Commands.add('cadastrarDevice', (body) => {
+    cy.request({
+        method: 'POST',
+        url: '/objects',
+        failOnStatusCode: false,
+        body: body
+    }) //sem o .then e return, funciona normalmente
+})
+
+Cypress.Commands.add('alterarDevice', (body, deviceId) => {
+    cy.request({
+        method: 'PUT',
+        url: `/objects/${deviceId}`,
+        failOnStatusCode: false,
+        body: body
+    })
+})
+
+Cypress.Commands.add('deletarDevice', (deviceId) => {
+    cy.request({
+        method: 'DELETE',
+        url: `/objects/${deviceId}`,
+        failOnStatusCode: false
+      }).as('deleteDevice')
+})
+
 //
 //
 // -- This is a child command --

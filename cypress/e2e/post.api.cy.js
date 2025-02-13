@@ -17,25 +17,13 @@ describe('Cadastro de dispositivos', () => {
       }
    }
 
-    cy.request({
-      method: 'POST',
-      url: '/objects',
-      failOnStatusCode: false,
-      body: body
-    }).as('postRegisterDevice')
-
-    //validaçõesS
-    cy.get('@postRegisterDevice')
+    cy.cadastrarDevice(body)
       .then((response) => {
-        //console.log(response)
         expect(response.status).equal(200)
-
         expect(response.body).not.empty
         expect(response.body.name).equal('Apple MacBook Air')
-
         expect(response.body.createdAt).not.empty
         expect(response.body.createdAt.slice(0, 10)).equal(dataAtual)
-        
         expect(response.body.data).not.empty
         expect(response.body.data.year).not.string
         expect(response.body.data.year).equal(2025)

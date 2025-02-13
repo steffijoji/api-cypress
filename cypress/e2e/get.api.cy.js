@@ -7,21 +7,12 @@ describe('Buscar dispositivos', () => {
 
     const deviceId = '7'
 
-    cy.request({
-      method: 'GET',
-      url: `/objects/${deviceId}`,
-      failOnStatusCode: false
-    }).as('getDeviceResult')
-
-    //validações
-    cy.get('@getDeviceResult')
+    cy.buscarDeviceEspecifico(deviceId)
       .then((response) => {
         expect(response.status).equal(200)
-
         expect(response.body).not.empty
         expect(response.body.id).equal('7')
         expect(response.body.name).equal('Apple MacBook Pro 16')
-        
         expect(response.body.data).not.empty
         expect(response.body.data.year).not.string
         expect(response.body.data.year).equal(2019)
@@ -31,6 +22,18 @@ describe('Buscar dispositivos', () => {
         expect(response.body.data['CPU model']).equal('Intel Core i9')
         expect(response.body.data['Hard disk size']).not.empty
         expect(response.body.data['Hard disk size']).equal('1 TB')
+      })
+  })
+
+  it('Buscar um dispositivo inexistente', () => {
+
+    const deviceId = '123'
+
+    cy.buscarDeviceEspecifico(deviceId)
+      .then((response) => {
+        expect(response.status).equal(404)
+        expect(response.body).not.empty
+        expect(response.body.error).equal(`Oject with id=${deviceId} was not found.`)
       })
   })
 })
