@@ -3,22 +3,14 @@
 
 describe('Exclusão de dispositivos', () => {
 
+  const dataDevice = require('../fixtures/device-data.json')
+
   it('Excluir um dispositivo', () => {
-
-    const body = {
-      "name": "Apple MacBook Air",
-      "data": {
-        "year": 2025,
-        "price": 6500.99,
-        "CPU model": "GPU 7‑core",
-        "Hard disk size": "8 GB RAM, 256 GB"
-      }
-    }
-
-    cy.cadastrarDevice(body)
+    
+    cy.cadastrarDevice(dataDevice.registerBody)
       .then((response) => {
         expect(response.status).equal(200)
-
+        
         const deviceId = response.body.id
 
         cy.deletarDevice(deviceId)

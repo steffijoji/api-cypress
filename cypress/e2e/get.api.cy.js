@@ -1,6 +1,5 @@
 /// <reference types="cypress" />
 
-
 describe('Buscar dispositivos', () => {
 
   it('Buscar um dispositivo específico', () => {

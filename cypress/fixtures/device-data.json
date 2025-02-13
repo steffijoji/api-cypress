@@ -1,0 +1,21 @@
+{
+    "registerBody": {
+        "name": "Apple MacBook Air",
+        "data": {
+            "year": 2025,
+            "price": 6500.99,
+            "CPU model": "GPU 7‑core",
+            "Hard disk size": "8 GB RAM, 256 GB"
+        }
+    },
+
+    "updateBody": {
+        "name": "Apple MacBook Air - update",
+        "data": {
+          "year": 2025,
+          "price": 6399.00,
+          "CPU model": "GPU 7‑core",
+          "Hard disk size": "8 GB RAM, 256 GB"
+        }
+      }
+}
