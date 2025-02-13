@@ -17,7 +17,7 @@ describe('Exclusão de dispositivos', () => {
 
     cy.request({
       method: 'POST',
-      url: 'https://api.restful-api.dev/objects',
+      url: '/objects',
       failOnStatusCode: false,
       body: body
     }).as('postRegisterDevice')
@@ -29,7 +29,7 @@ describe('Exclusão de dispositivos', () => {
 
         cy.request({
           method: 'DELETE',
-          url: `https://api.restful-api.dev/objects/${response.body.id}`
+          url: `/objects/${response.body.id}`
         }).as('deleteDevice')
 
         cy.get('@deleteDevice').then((responseDelete) => {
@@ -40,13 +40,13 @@ describe('Exclusão de dispositivos', () => {
       })
   })
 
-  it.only('Excluir um disposiivo inexistente', () => {
+  it('Excluir um disposiivo inexistente', () => {
 
     const idInexistente = '123'
 
     cy.request({
       method: 'DELETE',
-      url: `https://api.restful-api.dev/objects/${idInexistente}`,
+      url: `/objects/${idInexistente}`,
       failOnStatusCode: false
     }).as('deleteDevice')
 

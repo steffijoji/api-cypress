@@ -9,14 +9,13 @@ describe('Buscar dispositivos', () => {
 
     cy.request({
       method: 'GET',
-      url: `https://api.restful-api.dev/objects/${deviceId}`,
+      url: `/objects/${deviceId}`,
       failOnStatusCode: false
     }).as('getDeviceResult')
 
-    //validaçõesS
+    //validações
     cy.get('@getDeviceResult')
       .then((response) => {
-        //console.log(response)
         expect(response.status).equal(200)
 
         expect(response.body).not.empty

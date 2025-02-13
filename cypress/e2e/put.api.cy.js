@@ -29,12 +29,12 @@ describe('Update de dispositivos', () => {
 
     cy.request({
       method: 'POST',
-      url: 'https://api.restful-api.dev/objects',
+      url: '/objects',
       failOnStatusCode: false,
       body: bodyRegister
     }).as('postRegisterDevice')
 
-    //validaçõesS
+    //validações
     cy.get('@postRegisterDevice')
       .then((response) => {
         expect(response.status).equal(200)
@@ -42,7 +42,7 @@ describe('Update de dispositivos', () => {
 
         cy.request({
           method: 'PUT',
-          url: `https://api.restful-api.dev/objects/${response.body.id}`,
+          url: `/objects/${response.body.id}`,
           body: bodyUpdate
         }).as('updateDevice')
 

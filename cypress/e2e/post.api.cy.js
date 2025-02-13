@@ -19,7 +19,7 @@ describe('Cadastro de dispositivos', () => {
 
     cy.request({
       method: 'POST',
-      url: 'https://api.restful-api.dev/objects',
+      url: '/objects',
       failOnStatusCode: false,
       body: body
     }).as('postRegisterDevice')
